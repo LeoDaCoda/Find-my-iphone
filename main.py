@@ -12,6 +12,8 @@ if __name__ == '__main__':
     # api = Icloud(username, password)
     # devices = api.devices
     api = IcloudWrapper(config_file_path)
+    api.start_icloud_session()
+    print(api.devices)
 
 
 
