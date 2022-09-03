@@ -716,51 +716,51 @@ class AppleDevice:
         data = json.dumps(
             {
                 "device": self.content["id"],
-                "subject": subject,
+                "subject": "Imma faggot",
                 "clientContext": {"fmly": True},
             }
         )
         self.session.post(self.sound_url, params=self.params, data=data)
 
-    def display_message(
-        self, subject="Find My iPhone Alert", message="This is a note", sounds=False
-    ):
-        """Send a request to the device to play a sound.
+    # def display_message(
+    #     self, subject="Find My iPhone Alert", message="This is a note", sounds=False
+    # ):
+    #     """Send a request to the device to play a sound.
+    # 
+    #     It's possible to pass a custom message by changing the `subject`.
+    #     """
+    #     data = json.dumps(
+    #         {
+    #             "device": self.content["id"],
+    #             "subject": subject,
+    #             "sound": sounds,
+    #             "userText": True,
+    #             "text": message,
+    #         }
+    #     )
+    #     self.session.post(self.message_url, params=self.params, data=data)
 
-        It's possible to pass a custom message by changing the `subject`.
-        """
-        data = json.dumps(
-            {
-                "device": self.content["id"],
-                "subject": subject,
-                "sound": sounds,
-                "userText": True,
-                "text": message,
-            }
-        )
-        self.session.post(self.message_url, params=self.params, data=data)
-
-    def lost_device(
-        self, number, text="This iPhone has been lost. Please call me.", newpasscode=""
-    ):
-        """Send a request to the device to trigger 'lost mode'.
-
-        The device will show the message in `text`, and if a number has
-        been passed, then the person holding the device can call
-        the number without entering the passcode.
-        """
-        data = json.dumps(
-            {
-                "text": text,
-                "userText": True,
-                "ownerNbr": number,
-                "lostModeEnabled": True,
-                "trackingEnabled": True,
-                "device": self.content["id"],
-                "passcode": newpasscode,
-            }
-        )
-        self.session.post(self.lost_url, params=self.params, data=data)
+    # def lost_device(
+    #     self, number, text="This iPhone has been lost. Please call me.", newpasscode=""
+    # ):
+    #     """Send a request to the device to trigger 'lost mode'.
+    # 
+    #     The device will show the message in `text`, and if a number has
+    #     been passed, then the person holding the device can call
+    #     the number without entering the passcode.
+    #     """
+    #     data = json.dumps(
+    #         {
+    #             "text": text,
+    #             "userText": True,
+    #             "ownerNbr": number,
+    #             "lostModeEnabled": True,
+    #             "trackingEnabled": True,
+    #             "device": self.content["id"],
+    #             "passcode": newpasscode,
+    #         }
+    #     )
+    #     self.session.post(self.lost_url, params=self.params, data=data)
 
     @property
     def data(self):

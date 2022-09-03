@@ -2,7 +2,8 @@ import json
 
 from icloud import PyiCloudService
 from os import path
-from icloud_exceptions import *
+from icloud_exceptions import PyiCloudException
+
 
 class IcloudWrapper:
 
@@ -11,6 +12,7 @@ class IcloudWrapper:
         self.__password = None
         self.api = None
         self.config_file_path = config_file_path
+        self.__start_icloud_session()
 
     def __get_pass_from_config(self):
         if not (path.exists(self.config_file_path)):
@@ -27,7 +29,7 @@ class IcloudWrapper:
                 print("Config file is incorrectly formatted.")
                 raise Exception("Config file is incorrectly formatted")
 
-    def start_icloud_session(self):
+    def __start_icloud_session(self):
         self.__get_pass_from_config()
         try:
             api = PyiCloudService(self.__username, self.__password)
