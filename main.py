@@ -15,21 +15,30 @@ def hello_world():
 
 @ask.launch
 def find_phone_manager():
+    try:
+        api = IcloudWrapper(config_file_path)
+    except:
+        return statement("Error please contact backend for support!")
 
-    return statement("Hello, finding phone")
+    devices = api.devices
+    msg = ""
+    if not api.favorite:
+        msg = 'Select device to ping?  '
+        for i, device in enumerate(devices):
+            msg += f"{i}: {device}, "
 
-
+    return question(msg)
 
 
 if __name__ == '__main__':
 
-    # app.run(debug=True)
-    api = IcloudWrapper(config_file_path)
-    print(api.devices)
-    phone = api.devices[1]
-    print(phone.status())
-    print(phone.location())
-    phone.play_sound()
+    app.run(debug=True)
+
+    # print(api.devices)
+    # phone = api.devices[1]
+    # print(phone.status())
+    # print(phone.location())
+    # phone.play_sound()
 
 
 
