@@ -10,7 +10,7 @@
 import json
 from re import match
 from uuid import uuid1
-from os import path
+from os import path, mkdir
 from tempfile import  gettempdir
 from requests import Session
 import http.cookiejar as cookielib
@@ -202,15 +202,15 @@ class PyiCloudService:
 
         if cookie_directory:
             self._cookie_directory = path.expanduser(path.normpath(cookie_directory))
-            # if not path.exists(self._cookie_directory):
-            #     mkdir(self._cookie_directory, 0o700)
+            if not path.exists(self._cookie_directory):
+                mkdir(self._cookie_directory, 0o700)
         else:
             topdir = path.join(gettempdir(), "pyicloud")
             self._cookie_directory = path.join(topdir, getpass.getuser())
-            # if not path.exists(topdir):
-            #     mkdir(topdir, 0o777)
-            # if not path.exists(self._cookie_directory):
-            #     mkdir(self._cookie_directory, 0o700)
+            if not path.exists(topdir):
+                mkdir(topdir, 0o777)
+            if not path.exists(self._cookie_directory):
+                mkdir(self._cookie_directory, 0o700)
 
         # LOGGER.debug("Using session file %s", self.session_path)
 
