@@ -10,6 +10,7 @@ class IcloudWrapper:
     def __init__(self, config_file_path='my-app.json'):
         self.__username = None
         self.__password = None
+        self.favorite = None
         self.api = None
         self.config_file_path = config_file_path
         self.__start_icloud_session()
@@ -25,6 +26,7 @@ class IcloudWrapper:
             try:
                 self.__username = config_data['username']
                 self.__password = config_data['password']
+                self.favorite = config_data['favorite']
             except KeyError:
                 print("Config file is incorrectly formatted.")
                 raise Exception("Config file is incorrectly formatted")

@@ -22,6 +22,10 @@
                 {
                     "name": "AMAZON.YesIntent",
                     "samples": []
+                },
+                {
+                    "name": "AMAZON.SelectIntent",
+                    "samples": []
                 }
             ],
             "types": []
