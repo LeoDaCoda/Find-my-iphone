@@ -6,8 +6,18 @@ from flask_ask import Ask, statement, question, session, request
 config_file_path = "my-app.json"
 config_data = None
 
-app = Flask(__name__)
-ask = Ask(app, '/fmi')
+
+def run_app(icloud_api):
+    app = Flask(__name__)
+    ask = Ask(app, '/fmi')
+    app.config["icloud_api"] = icloud_api
+
+    return app, ask
+
+
+api = IcloudWrapper(config_file_path)
+app, ask = run_app(api)
+
 
 @app.route("/fmi")
 def hello_world():
@@ -16,7 +26,7 @@ def hello_world():
 @ask.launch
 def find_phone_manager():
     try:
-        api = IcloudWrapper(config_file_path)
+        api = app.config["icloud_api"]
     except:
         return statement("Error please contact backend for support!")
 
@@ -38,15 +48,35 @@ def select():
     except:
         return statement("Debug 2")
 
+
+def confirm_favorite():
+    pass
+
+def make_favorite():
+    pass
+
+
+def ping():
+    pass
+
+
+
+
+
+
 if __name__ == '__main__':
 
+    # # app.run(debug=True)
+    # api = IcloudWrapper(config_file_path)
+    # print(api.devices)
+    # phone = api.devices[3]
+    # print(phone.status())
+    # print(phone.location())
+    # #phone.play_sound()
+
     app.run(debug=True)
-    api = IcloudWrapper(config_file_path)
-    print(api.devices)
-    phone = api.devices[3]
-    print(phone.status())
-    print(phone.location())
-    phone.play_sound()
+
+
 
 
 
