@@ -20,12 +20,28 @@
                     "samples": []
                 },
                 {
-                    "name": "AMAZON.YesIntent",
+                    "name": "AMAZON.SelectIntent",
                     "samples": []
                 },
                 {
-                    "name": "AMAZON.SelectIntent",
-                    "samples": []
+                    "name": "YesMakeFavorite",
+                    "slots": [],
+                    "samples": [
+                        "yeah",
+                        "yup",
+                        "yes"
+                    ]
+                },
+                {
+                    "name": "NoMakeFavorite",
+                    "slots": [],
+                    "samples": [
+                        "no thanks",
+                        "nope",
+                        "na",
+                        "naw",
+                        "nah"
+                    ]
                 }
             ],
             "types": []
