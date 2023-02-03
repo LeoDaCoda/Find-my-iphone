@@ -1,5 +1,5 @@
 # Find-my-iphone
-This repo automates icloud's find my iphone feature
+This repo is an Alexa skill that you ca  use to automate the find my iphone feature for IOS
 
 # Script
 ## First run (no favorites selected):
